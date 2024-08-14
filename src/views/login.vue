@@ -38,6 +38,8 @@
 
 <script setup>
 import {ref ,getCurrentInstance} from 'vue'
+import {useStore} from "vuex";
+
 const username = ref('')
 const password = ref('')
 const {proxy} = getCurrentInstance()
@@ -61,11 +63,15 @@ const changeView = () =>{
 }
 //处理登录
 const loginFormRef = ref()
+const store = useStore()
 const handleLogin = ()=>{
   loginFormRef.value.validate(valid =>{
     if(!valid) return
     proxy.$api.login(loginForm.value).then(res =>{
-      console.log(res)
+      //console.log(res.data.token)
+      proxy.$message.success("xxxx")
+      store.commit('saveToken',res.data.token)
+      console.log(store.watch('token'))
 }).catch(err =>{
   console.log(err)
     })
