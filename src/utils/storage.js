@@ -5,6 +5,10 @@ export default {
     getStorage(){
         return JSON.parse(window.localStorage.getItem(import.meta.env.VITE_APP_NAMESPACE) || "{}")
     },
+    getItem(key){
+        return  this.getStorage()[key]
+
+    },
     setItem(key,val){
         let storage = this.getStorage()
         storage[key] = val

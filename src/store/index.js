@@ -7,7 +7,10 @@ import mutations from "@/store/mutations.js";
 import storage from "@/utils/storage.js";
 
 const state = {
-  token:storage.getStorage('token')
+    token:"" || storage.getStorage('token'),
+    sysAdmin:"" ||storage.getItem('sysAdmin'),
+    leftMenuList:"" ||storage.getItem('leftMenuLIst'),
+    permissionList:"" ||storage.getItem('permissionList'),
 }
 
 export default createStore({

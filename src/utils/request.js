@@ -4,7 +4,7 @@
 import axios from 'axios'
 import {ElMessage} from "element-plus";
 import router from "@/router/router.js";
-//import storage from "@/utils/storage.js";
+import storage from "@/utils/storage.js";
 //创建axios
 const service = axios.create({
     baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -13,7 +13,7 @@ const service = axios.create({
 //请求拦截
 service.interceptors.request.use(req =>{
     const headers = req.headers
-    const token = "admin"
+    const token = storage.getItem("token") ||{}
     if(!headers.Authorization){
         headers.Authorization = `Bearer ${token}`
         console.log('token',token)
@@ -26,6 +26,8 @@ service.interceptors.response.use((res)=>{
     const {code,data,message} = res.data
     if (code === 403){
         ElMessage.error(message)
+        //清除token
+        storage.clearAll()
         //todo
         setTimeout(()=>{
             router.push('/login')

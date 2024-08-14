@@ -7,7 +7,7 @@ import 'element-plus/dist/index.css'
 //图标
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 //引入router
-import router from './router/router.js'
+import router from './router/router'
 //引入全局样式
 import '@/styles/index.css'
 //打印当权环境和baseurl
@@ -21,9 +21,10 @@ import store from '@/store'
 
 
 //app实例
-const app = createApp(App)
-app.use(ElementPlus)   //使用element-plus
+const app = createApp(App);
 app.use(router)  //使用router
+app.use(ElementPlus)   //使用element-plus
+
 app.config.globalProperties.$api = api
 app.config.globalProperties.$storage = storage
 app.use(store)

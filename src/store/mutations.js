@@ -9,5 +9,19 @@ export default {
         state.token = token
         storage.setItem('token',token)
     },
-
+    //存用户信息
+    saveSysAdmin(state,sysAdmin){
+        state.sysAdmin = sysAdmin
+        storage.setItem('sysAdmin',sysAdmin)
+    },
+    //左侧菜单数据列表
+    saveLeftMenuList(state,leftMenuList){
+        state.leftMenuList = leftMenuList
+        storage.setItem('leftMenuList',leftMenuList)
+    },
+    //当前登录用户权限列表
+    savePermissionList(state,permissionList){
+        state.permissionList = permissionList
+        storage.setItem('permissionList',permissionList)
+    },
 }

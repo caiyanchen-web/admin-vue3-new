@@ -39,7 +39,10 @@
 <script setup>
 import {ref ,getCurrentInstance} from 'vue'
 import {useStore} from "vuex";
-
+//引入路由
+import {useRouter} from "vue-router";
+//定义路由
+const router = useRouter()
 const username = ref('')
 const password = ref('')
 const {proxy} = getCurrentInstance()
@@ -69,9 +72,15 @@ const handleLogin = ()=>{
     if(!valid) return
     proxy.$api.login(loginForm.value).then(res =>{
       //console.log(res.data.token)
-      proxy.$message.success("xxxx")
-      store.commit('saveToken',res.data.token)
-      console.log(store.watch('token'))
+      //proxy.$message.success("xxxx")
+      if(res.code !== 200){
+        proxy.$message.error(message)
+      }else{
+        store.commit('saveToken',res.data.token)
+        store.commit("saveSysAdmin",res.data.sysAdmin)
+        //console.log(store.watch('token'))
+        router.push('/home')
+      }
 }).catch(err =>{
   console.log(err)
     })
