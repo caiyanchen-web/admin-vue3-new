@@ -20,7 +20,11 @@
   </el-container>
 </template>
 <script setup>
-
+import { getCurrentInstance } from 'vue'
+const {proxy} = getCurrentInstance()
+//获取菜单数据
+const leftMenuList = proxy.$store.state.leftMenuList
+console.log(leftMenuList)
 </script>
 
 <style lang="css">
