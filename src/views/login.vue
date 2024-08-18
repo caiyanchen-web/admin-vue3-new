@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import {ref ,getCurrentInstance} from 'vue'
+import {ref ,getCurrentInstance ,computed,onBeforeUnmount} from 'vue'
 import {useStore} from "vuex";
 //引入路由
 import {useRouter} from "vue-router";
@@ -71,13 +71,14 @@ const handleLogin = ()=>{
   loginFormRef.value.validate(valid =>{
     if(!valid) return
     proxy.$api.login(loginForm.value).then(res =>{
-      //console.log(res.data.token)
+      console.log(res.data.leftMenuList)
       //proxy.$message.success("xxxx")
       if(res.code !== 200){
         proxy.$message.error(message)
       }else{
         store.commit('saveToken',res.data.token)
         store.commit("saveSysAdmin",res.data.sysAdmin)
+        store.commit('saveLeftMenuList',res.data.leftMenuList)
         //console.log(store.watch('token'))
         router.push('/home')
       }

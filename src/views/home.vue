@@ -6,6 +6,34 @@
         <img  alt="logo" src="@/assets/image/logo.png" class="aside-logo">
         <h4>博客运营后台</h4>
       </div>
+      <el-menu unique-opened>
+        <el-menu-item :index="'/welcome'">
+          <el-icon>
+            <component is="HomeFilled">
+            </component>
+          </el-icon>
+          <template #title>
+            <span>首页</span>
+          </template>
+        </el-menu-item>
+        <el-sub-menu :index="item.menu_id +''" v-for="item in leftMenuList" :key="item.menu_id+''">
+          <template #title>
+            <el-icon>
+              <component :is="item.icon"></component>
+            </el-icon>
+            <span>{{item.menu_name}}</span>
+          </template>
+          <el-menu-item :index="subitem.menu_id +''" v-for="subitem in item.children" :key="subitem.menu_id+''">
+            <template #title>
+              <el-icon>
+                <component :is="subitem.icon"></component>
+              </el-icon>
+              <span>{{subitem.menu_name}}</span>
+            </template>
+          </el-menu-item>
+        </el-sub-menu>
+
+      </el-menu>
     </el-aside>
     <el-container>
       <!--头部-->
