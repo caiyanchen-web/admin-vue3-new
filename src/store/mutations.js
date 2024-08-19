@@ -24,4 +24,9 @@ export default {
         state.permissionList = permissionList
         storage.setItem('permissionList',permissionList)
     },
+    //路由激活
+    saveActivePath(state,activePath){
+        state.activePath = activePath
+        storage.setItem('activePath',activePath)
+    },
 }

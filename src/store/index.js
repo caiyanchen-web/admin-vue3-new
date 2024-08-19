@@ -11,6 +11,7 @@ const state = {
     sysAdmin:"" ||storage.getItem('sysAdmin'),
     leftMenuList:"" ||storage.getItem('leftMenuLIst'),
     permissionList:"" ||storage.getItem('permissionList'),
+    saveActivePath:"" || storage.getItem('saveActivePath'),
 }
 
 export default createStore({
